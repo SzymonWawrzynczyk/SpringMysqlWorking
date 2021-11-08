@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bezkoder.spring.datajpa.model.Customer;
 import com.bezkoder.spring.datajpa.repository.CustomerRepository;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api")
 public class CustomerController {
@@ -104,6 +103,4 @@ public class CustomerController {
 		}
 
 	}
-
-
 }
