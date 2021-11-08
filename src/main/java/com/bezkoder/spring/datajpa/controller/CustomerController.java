@@ -29,8 +29,8 @@ public class CustomerController {
 	@Autowired
 	CustomerRepository customerRepository;
 
-	@GetMapping("/tutorials")
-	public ResponseEntity<List<Customer>> getAllTutorials(@RequestParam(required = false) String title) {
+	@GetMapping("/customers")
+	public ResponseEntity<List<Customer>> getAllCustomers(@RequestParam(required = false) String title) {
 		try {
 			List<Customer> customers = new ArrayList<Customer>();
 
@@ -47,7 +47,7 @@ public class CustomerController {
 		}
 	}
 
-	@GetMapping("/tutorials/{id}")
+	@GetMapping("/customers/{id}")
 	public ResponseEntity<Customer> getTutorialById(@PathVariable("id") long id) {
 		Optional<Customer> tutorialData = customerRepository.findById(id);
 
@@ -58,7 +58,7 @@ public class CustomerController {
 		}
 	}
 
-	@PostMapping("/tutorials")
+	@PostMapping("/customers")
 	public ResponseEntity<Customer> createTutorial(@RequestBody Customer customer) {
 		try {
 			Customer _customer = customerRepository
@@ -69,7 +69,7 @@ public class CustomerController {
 		}
 	}
 
-	@PutMapping("/tutorials/{id}")
+	@PutMapping("/customers/{id}")
 	public ResponseEntity<Customer> updateTutorial(@PathVariable("id") long id, @RequestBody Customer customer) {
 		Optional<Customer> tutorialData = customerRepository.findById(id);
 
@@ -84,7 +84,7 @@ public class CustomerController {
 		}
 	}
 
-	@DeleteMapping("/tutorials/{id}")
+	@DeleteMapping("/customers/{id}")
 	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
 			customerRepository.deleteById(id);
@@ -94,8 +94,8 @@ public class CustomerController {
 		}
 	}
 
-	@DeleteMapping("/tutorials")
-	public ResponseEntity<HttpStatus> deleteAllTutorials() {
+	@DeleteMapping("/customers")
+	public ResponseEntity<HttpStatus> deleteAllCustomers() {
 		try {
 			customerRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
