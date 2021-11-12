@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -61,7 +61,7 @@ public class CustomerController {
 	public ResponseEntity<Customer> createTutorial(@RequestBody Customer customer) {
 		try {
 			Customer _customer = customerRepository
-					.save(new Customer(customer.getId(), customer.getName(), customer.getAddress()));
+					.save(new Customer(customer.getId(), customer.getName(), customer.getAddress(), customer.getPassword()));
 			return new ResponseEntity<>(_customer, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -77,6 +77,7 @@ public class CustomerController {
 			_customer.setId(customer.getId());
 			_customer.setName(customer.getName());
 			_customer.setAddress(customer.getAddress());
+			_customer.setPassword(customer.getPassword());
 			return new ResponseEntity<>(customerRepository.save(_customer), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
